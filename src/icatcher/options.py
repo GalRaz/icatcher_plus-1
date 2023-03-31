@@ -47,6 +47,8 @@ def parse_arguments():
     parser.add_argument("--raw_dataset_type", type=str, choices=["lookit", "cali-bw", "senegal", "generic"], default="lookit",
                         help="the type of dataset to preprocess")
     parser.add_argument("--illegal_transitions_path", type=str, help="path to CSV with illegal transitions to 'smooth' over")
+    parser.add_argument('--use_facerec', default=False, help="Flag to use face recognition")
+
     args = parser.parse_args()
     if args.model:
         args.model = Path(args.model)

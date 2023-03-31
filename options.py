@@ -59,6 +59,7 @@ def parse_arguments_for_training():
     parser.add_argument("--log", action="store_true", help="Logs into a file instead of stdout")
     parser.add_argument("-v", "--verbosity", type=str, choices=["debug", "info", "warning"], default="info",
                         help="Selects verbosity level")
+
     args = parser.parse_args()
     args.dataset_folder = Path(args.dataset_folder)
     # add some useful arguments for the rest of the code
@@ -118,6 +119,8 @@ def parse_arguments_for_testing():
     parser.add_argument("--raw_dataset_type", type=str, choices=["lookit", "cali-bw", "senegal", "generic"], default="lookit",
                         help="the type of dataset to preprocess")
     parser.add_argument("--illegal_transitions_path", type=str, help="path to CSV with illegal transitions to 'smooth' over")
+    parser.add_argument('--use_facerec', default=False, help="Flag to use face recognition")
+
     args = parser.parse_args()
     args.model = Path(args.model)
     if not args.model.is_file():
