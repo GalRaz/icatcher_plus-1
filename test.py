@@ -94,16 +94,15 @@ class FaceRec:
         face_locations = []
         face_encodings = []
 
-        rgb_frame = frame[:, :, ::-1]
 
         # Find all the faces and face encodings in the current frame of video
-        face_locations = face_recognition.face_locations(rgb_frame)
-        face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
+        face_locations = face_recognition.face_locations(frame)
+        face_encodings = face_recognition.face_encodings(frame, face_locations)
 
         for face_encoding in face_encodings:
             # See if the face is a match for the known face(s)
             match = face_recognition.compare_faces(
-                self.known_faces, face_encoding, tolerance=0.50
+                self.known_faces, face_encoding, tolerance=0.10
             )
 
             if match[0]:
